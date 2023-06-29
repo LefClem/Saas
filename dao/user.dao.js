@@ -41,8 +41,9 @@ class UserMethods {
                     if (!valid) {
                       reject({ message: "Paire identifiant/mot de passe incorrect" });
                     } else {
+                      console.log(results[0]);
                       resolve({
-                        UserId: results[0].id,
+                        UserId: results[0].user_id,
                         token: jwt.sign(
                           { UserId: results[0].id },
                           process.env.KEY,

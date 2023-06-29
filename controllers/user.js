@@ -35,6 +35,10 @@ exports.login = async (req, res) => {
             httpOnly : true,
             path:"/"
         })
+        res.cookie("userId", response.UserId,{
+          httpOnly : true,
+          path: "/"
+        })
         res.status(200).json({ response });
 
     } catch (error) {

@@ -2,12 +2,12 @@ const db = require('../db')
 
 class ClientsMethods {
 
-    getClients(){
-        let sql = "SELECT * FROM Clients"
+    getClients() {
+        let sql = "SELECT * FROM Contacts"
 
         return new Promise((resolve, error) => {
             db.query(sql, (err, results) => {
-                if(err) throw err;
+                if (err) throw err;
                 try {
                     resolve(results)
                 } catch (error) {
@@ -18,13 +18,14 @@ class ClientsMethods {
     }
 
 
-    createClient(client){
-        let sql = `INSERT INTO Clients SET ?`;
+    createClient(client) {
+        let sql = `INSERT INTO Contacts SET ?`;
 
         return new Promise((resolve, reject) => {
             db.query(sql, client, (err, results) => {
-                if(err) throw err;
+                if (err) throw err;
                 try {
+                    console.log(results);
                     resolve(results)
                 } catch (error) {
                     console.log(error);
@@ -35,12 +36,12 @@ class ClientsMethods {
 
     }
 
-    modifyClient(infos, id){
-        let sql = `UPDATE Clients SET ? WHERE IdClients = ${id}`;
+    modifyClient(infos, id) {
+        let sql = `UPDATE Contacts SET ? WHERE contact_id = ${id}`;
 
         return new Promise((resolve, reject) => {
             db.query(sql, infos, (err, results) => {
-                if(err) throw err;
+                if (err) throw err;
                 try {
                     resolve(results)
                 } catch (error) {
@@ -51,14 +52,18 @@ class ClientsMethods {
         })
     }
 
-    deleteClient(id){
-        let sql = 'DELETE FROM Clients WHERE IdClients = ?'
+    deleteClient(id) {
+        let sql = 'DELETE FROM Contacts WHERE contact_id = ?'
 
         return new Promise((resolve, reject) => {
             db.query(sql, id, (err, results) => {
-                if(err) throw err;
+                if (err) throw err;
                 try {
-                    resolve(results)
+                    if (results.affectedRows === 0) {
+                        reject("Ce contact n'existe pas")
+                    } else {
+                        resolve(results)
+                    }
                 } catch (error) {
                     reject(error);
                 }

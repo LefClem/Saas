@@ -6,7 +6,7 @@ const auth = require('../middlewares/auth');
 
 
 router.get('/', cookieJwt, clientsCtrl.getClients)
-router.post('/newClient', cookieJwt, clientsCtrl.createClients);
+router.post('/', cookieJwt, clientsCtrl.createClients);
 router.delete('/:id', cookieJwt, clientsCtrl.deleteClients);
 router.put('/:id', cookieJwt, clientsCtrl.updateClients);
 
