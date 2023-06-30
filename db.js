@@ -5,7 +5,7 @@ let connexion = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
     password: 'Klapaucius972!',
-    database: 'Saas'
+    database: 'Crm_Saas'
 })
 
 connexion.connect((error) => {

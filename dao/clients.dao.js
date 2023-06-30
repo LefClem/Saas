@@ -53,10 +53,10 @@ class ClientsMethods {
     }
 
     deleteClient(id) {
-        let sql = 'DELETE FROM Contacts WHERE contact_id = ?'
+        let sql = `DELETE FROM Contacts WHERE contact_id = ${id}`
 
         return new Promise((resolve, reject) => {
-            db.query(sql, id, (err, results) => {
+            db.query(sql, (err, results) => {
                 if (err) throw err;
                 try {
                     if (results.affectedRows === 0) {

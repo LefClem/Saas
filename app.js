@@ -3,6 +3,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const userRoutes = require('./routes/user');
 const clientsRoutes = require('./routes/clients');
+const tasksRoutes = require('./routes/tasks');
 
 
 app.use((req, res, next) => {
@@ -22,6 +23,7 @@ app.use(cookieParser());
 
 app.use('/auth', userRoutes);
 app.use('/clients', clientsRoutes);
+app.use('/tasks', tasksRoutes);
 
 
 
